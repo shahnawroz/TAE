@@ -17,6 +17,8 @@ app.get("/user/:name", (req, res) => {
     }
   });
 });
+app.get("/",(req,res)=> res.json('here'))
+
 
 
 app.listen(3000, () => console.log("Port is running at 3000"));
