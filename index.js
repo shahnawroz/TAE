@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import easyinvoice from "easyinvoice";
 import fs from "fs";
-import path from "path"
+
 
 const app = express();
 
@@ -28,6 +28,8 @@ const {cemail} = req.body
 const {czip_code} = req.body
 const {ccity} =req.body
 const {ccountry} = req.body
+
+
  
 var data = {
     //"documentTitle": "RECEIPT", //Defaults to INVOICE
