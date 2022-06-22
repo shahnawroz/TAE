@@ -122,4 +122,4 @@ easyinvoice.createInvoice(data, async function (result) {
 
 
 
-app.listen(3000, () => console.log("Port is running at 3000"));
+app.listen(process.env.PORT || 3000, () => console.log("Port is running at 3000"));
