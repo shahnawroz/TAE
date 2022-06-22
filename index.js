@@ -8,12 +8,12 @@ const app = express();
 
 
 app.use(bodyParser.json());
-const user = [ ];
+
 
 app.get("/", (req,res)=>res.json("Welcome to the Invoicing API"))
 app.post("/get-invoice", (req, res) => {
-  //Import the library into your project
-// console.log (req.body)
+
+
 const {company_name}=req.body
 const {address} = req.body
 const {phone_no} = req.body
@@ -31,14 +31,13 @@ const {ccity} =req.body
 const {ccountry} = req.body
 
 
- 
+
 var data = {
-    //"documentTitle": "RECEIPT", //Defaults to INVOICE
+    //logo extension must be png
     "images": {
       "logo": "https://public.easyinvoice.cloud/img/logo_en_original.png",
      
-    }, //or base64
-    //"logoExtension": "png", //only when logo is base64
+    },
     "sender": {
         "company":company_name ,
         "custom2": email,
@@ -49,7 +48,7 @@ var data = {
         "country": country,
         
         
-        //"custom3": "custom value 3"
+       
     },
     "client": {
       "company":ccompany_name ,
@@ -60,8 +59,7 @@ var data = {
       "city": ccity,
       "country": ccountry,
         
-        //"custom2": "custom value 2",
-        //"custom3": "custom value 3"
+       
        
     },
     "information": {
@@ -95,31 +93,20 @@ var data = {
     }
 };
  
-//Create your invoice! Easy!
+//Create Invoice Structure
 easyinvoice.createInvoice(data, async function (result) {
-    //The response will contain a base64 encoded PDF file
+
    
 
     await fs.writeFileSync("invoice.pdf", result.pdf, 'base64');
-    
-  //   var options = {
-  //     root: path.join(__dirname)
-      
-  // };
-  // console.log(__dirname)
+ 
   res.download("./invoice.pdf")
    
-//   res.sendFile("./invoice.pdf", function (err) {
-//       if (err) {
-//           next(err);
-//       } else {
-//           console.log('Sent:', "./invoice.pdf");
-//       }
-// });
+
  }) });
 
  
 
 
 
-app.listen(port, () => console.log("Port is running at 3000"));
+app.listen(port, () => console.log(`Port is running at ${port}`));
