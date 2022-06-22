@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 const user = [ ];
 app.get ("/", (req,res)=>res.json("hello world"))
 
-app.post("/getinvoice", (req, res) => {
+app.post("/get-invoice", (req, res) => {
   //Import the library into your project
 // console.log (req.body)
 const {company_name}=req.body
