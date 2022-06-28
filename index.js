@@ -9,22 +9,26 @@ const app = express();
 
 app.use(bodyParser.json());
 
-
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept');
+});
 app.get("/", (req,res)=>res.json("Welcome to the Invoicing API"))
 app.post("/get-invoice", (req, res) => {
 
 
 const {company_name}=req.body
-const {address} = req.body
-const {phone_no} = req.body
+const {caddress} = req.body
+const {pnumber} = req.body
 const {email} = req.body
 const {zip_code} = req.body
 const {city} =req.body
 const {country} = req.body
 
 const {ccompany_name}=req.body
-const {caddress} = req.body
-const {cphone_no} = req.body
+const {ccaddress} = req.body
+const {cpnumber} = req.body
 const {cemail} = req.body
 const {czip_code} = req.body
 const {ccity} =req.body
@@ -41,8 +45,8 @@ var data = {
     "sender": {
         "company":company_name ,
         "custom2": email,
-        "custom1": phone_no,
-        "address": address,
+        "custom1": pnumber,
+        "address": caddress,
         "zip": zip_code,
         "city": city,
         "country": country,
@@ -53,8 +57,8 @@ var data = {
     "client": {
       "company":ccompany_name ,
       "custom2": cemail,
-      "custom1": cphone_no,
-      "address": caddress,
+      "custom1": cpnumber,
+      "address": ccaddress,
       "zip": czip_code,
       "city": ccity,
       "country": ccountry,
