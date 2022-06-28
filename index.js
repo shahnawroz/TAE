@@ -3,17 +3,17 @@ import bodyParser from "body-parser";
 import easyinvoice from "easyinvoice";
 import fs from "fs";
 
-const port= process.env.PORT || 3000;
+const port= process.env.PORT || 5000;
 const app = express();
 
 
 app.use(bodyParser.json());
+// app.use(function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept');
+// });
 
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept');
-});
 app.get("/", (req,res)=>res.json("Welcome to the Invoicing API"))
 app.post("/get-invoice", (req, res) => {
 
